@@ -57,6 +57,5 @@ class Comment
         if ($this->updated_at) {
             $this->updated_at = new \DateTime($this->updated_at);
         }
-
     }
 }

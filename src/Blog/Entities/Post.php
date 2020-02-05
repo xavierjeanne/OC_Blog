@@ -64,8 +64,7 @@ class Post
         }
 
         //define picture by default
-        if(is_null($this->picture))
-        {
+        if (is_null($this->picture)) {
             $this->picture = dirname(__DIR__) . '/public/img/picture/default.png';
         }
     }
