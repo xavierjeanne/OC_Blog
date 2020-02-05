@@ -5,7 +5,8 @@ namespace Framework\Renderer;
 use Psr\Container\ContainerInterface;
 
 /**
- * class factory twig for the renderer use in the depedency container to instanciate twig renderer with the view path config
+ * class factory twig for the renderer use in the depedency container
+ * to instanciate twig renderer with the view path config
  */
 class TwigRendererFactory
 {
