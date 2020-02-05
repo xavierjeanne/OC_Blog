@@ -9,6 +9,7 @@ use Framework\Renderer\TwigRenderer;
 //load autoloader
 require dirname(__DIR__) . '/vendor/autoload.php';
 
+
 //array of  module for app
 $modules = [
     \App\Blog\BlogModule::class

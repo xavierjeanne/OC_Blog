@@ -20,10 +20,10 @@ class BlogModule
     public function __construct(ContainerInterface $container)
     {
         //add views to renderer(instance of renderer by container)
-        $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/views');
+        $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/Views');
         //inject router
         $router = $container->get(Router::class);
-
+        //declare route 
         $router->get('/blog', HomepageController::class, 'blog.index');
     }
 }
