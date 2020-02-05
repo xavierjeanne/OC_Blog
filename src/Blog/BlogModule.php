@@ -25,7 +25,7 @@ class BlogModule
         $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/Views');
         //inject router
         $router = $container->get(Router::class);
-        //declare route 
+        //declare route
         $router->get('/blog', BlogController::class, 'blog.index');
     }
 }

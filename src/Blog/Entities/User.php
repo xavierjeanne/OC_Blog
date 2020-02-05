@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 namespace App\Blog\Entities;
 
-/** 
+/**
  * entity class, represent a entity user in database
  */
 class User
 {
-    /** 
+    /**
      * @var int id
      */
     public $id;
@@ -43,15 +43,14 @@ class User
     public $avatar;
 
     /**
-     * @var enum status 
+     * @var enum status
      * @options=["visitor","admin"]
      */
     public $status;
 
     public function __construct()
     {
-        if(is_null($this->avatar))
-        {
+        if (is_null($this->avatar)) {
             $this->avatar = dirname(__DIR__) . '/public/img/avatar/anonymous.png';
         }
     }
