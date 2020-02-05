@@ -4,7 +4,7 @@ namespace App\Blog;
 
 use Framework\Router;
 use Psr\Container\ContainerInterface;
-use App\Blog\Controller\BlogController;
+use App\Blog\Controllers\BlogController;
 use Framework\Renderer\RendererInterface;
 
 /**
@@ -22,10 +22,10 @@ class BlogModule
     {
 
         //add views to renderer(instance of renderer by container)
-        $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/views');
+        $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/Views');
         //inject router
         $router = $container->get(Router::class);
-
+        //declare route 
         $router->get('/blog', BlogController::class, 'blog.index');
     }
 }

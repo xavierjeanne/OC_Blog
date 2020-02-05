@@ -1,3 +1,6 @@
 /vendor/
 composer.lock
 .vscode-upload.json
+package-lock.json
+node_modules
+.vscode
