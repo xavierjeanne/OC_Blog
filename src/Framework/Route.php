@@ -40,7 +40,6 @@ class Route
         $this->params = $params;
     }
 
-
     /**
      * return name of route
      *
@@ -50,7 +49,6 @@ class Route
     {
         return $this->name;
     }
-
 
     /**
      * return  a callable

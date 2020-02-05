@@ -13,11 +13,6 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class CallableMidlleware implements MiddlewareInterface
 {
-    /**
-     * Undocumented variable
-     *
-     * @var callable
-     */
     private $callable;
 
     public function __construct($callable)
@@ -37,11 +32,6 @@ class CallableMidlleware implements MiddlewareInterface
         return new Response();
     }
 
-
-
-    /**
-     * Get the value of callable
-     */
     public function getCallable()
     {
         return $this->callable;

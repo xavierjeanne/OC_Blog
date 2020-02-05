@@ -3,7 +3,7 @@
 namespace Framework;
 
 /**
- * class method use for repository
+ * repository class, action using table in database
  */
 class Repository
 {
@@ -35,7 +35,6 @@ class Repository
     /**
      * return all register of an element
      *
-     * @return array
      */
     public function findAll(): array
     {
@@ -47,8 +46,6 @@ class Repository
     /**
      * get an element with id
      *
-     * @param integer $id
-     * @return array|null
      */
     public function find(int $id)
     {
@@ -61,10 +58,6 @@ class Repository
     /**
      * update fields in database
      *
-     * @param  int $id
-     * @param  array $fields
-     *
-     * @return bool
      */
     public function update(int $id, array $params): bool
     {
@@ -81,9 +74,6 @@ class Repository
     /**
      * insert an element in database
      *
-     * @param  mixed $params
-     *
-     * @return bool
      */
     public function insert(array $params): bool
     {
@@ -98,8 +88,6 @@ class Repository
     /**
      * delete an element
      *
-     * @param  int $id
-     * @return bool
      */
     public function delete(int $id): bool
     {
@@ -110,9 +98,6 @@ class Repository
     /**
      * buildFieldQuery create the query fields with params
      *
-     * @param  array $params
-     *
-     * @return void
      */
     private function buildFieldQuery(array $params)
     {

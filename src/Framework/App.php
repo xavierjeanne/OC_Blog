@@ -9,9 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class App
 {
-
     /**
-     * Undocumented variable
      *
      * @var array
      */
@@ -31,13 +29,6 @@ class App
      */
     private $container;
 
-    /**
-     * __contruct
-     *@param ContainerInterface
-     * @param  string[] $modules list modules to load
-     *
-     * @return void
-     */
     public function __construct(ContainerInterface $container, array $modules = [])
     {
         $this->container = $container;
@@ -46,8 +37,6 @@ class App
             $this->modules[] = $container->get($module);
         }
     }
-
-
 
     /**
      * run app and send response
