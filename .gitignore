@@ -1,7 +1,7 @@
 /vendor/
 composer.lock
 .vscode-upload.json
-.vscode
-node_modules
 package-lock.json
+node_modules
+.vscode
 
