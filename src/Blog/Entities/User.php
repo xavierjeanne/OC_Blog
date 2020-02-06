@@ -50,6 +50,7 @@ class User
 
     public function __construct()
     {
+        //define avatar by default
         if (is_null($this->avatar)) {
             $this->avatar = dirname(__DIR__) . '/public/img/avatar/anonymous.png';
         }
