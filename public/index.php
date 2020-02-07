@@ -12,7 +12,8 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 //array of  module for app
 $modules = [
-    \App\Blog\BlogModule::class
+    \App\Blog\BlogModule::class,
+    \App\Admin\AdminModule::class
 ];
 
 //create container builder
