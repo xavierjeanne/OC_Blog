@@ -23,7 +23,7 @@ class BlogModule
         $container->get(RendererInterface::class)->addPath('blog', __DIR__ . '/views');
         //inject router
         $router = $container->get(Router::class);
-
+        //declare route
         $router->get('/blog', HomepageController::class, 'blog.index');
     }
 }

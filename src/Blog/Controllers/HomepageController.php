@@ -18,7 +18,7 @@ class HomepageController
         $this->renderer = $renderer;
     }
 
-    public function __invoke(ServerRequestInterface $request):void
+    public function __invoke(ServerRequestInterface $request)
     {
         return $this->renderer->render('@blog/index');
     }
