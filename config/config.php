@@ -1,6 +1,7 @@
 <?php
 
 use Framework\Router;
+use Framework\Twig\TimeExtension;
 use Psr\Container\ContainerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
@@ -17,6 +18,10 @@ return [
     'database.name' => 'ocblog',
     //define view path for twig template
     'view_path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
+    //define twig extension
+    'twig.extensions' => [
+        \DI\get(TimeExtension::class)
+    ],
     //initiate renderer with twig renderer using config.view_path in constructor
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),
     //initiate router

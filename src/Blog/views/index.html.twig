@@ -3,13 +3,22 @@
 {% block title "Blog" %}
 
 {% block body %}
-	<h1>Bienvenue sur le blog</h1>
-	<ul>
-		<li>Article 1</li>
-		<li>Article 2</li>
-		<li>Article 3</li>
-		<li>Article 4</li>
-		<li>Article 5</li>
-		<li>Article 6</li>
-	</ul>
+	{% for post in posts %}
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">
+							{{post.title}}
+						</h2>
+						<p><img src="{{post.picture}}" alt="{{post.title}}"></p>
+					</a>
+					<p class="post-meta">Ecrit par
+						{{post.user_id}},
+						{{post.created_at|ago}}</p>
+				</div>
+				<hr>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock body %}
