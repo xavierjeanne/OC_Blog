@@ -31,7 +31,7 @@ function cssFront() {
 }
 
 function cssBack() {
-    return gulp
+    return gulp <<
         .src("./back_asset/sass/*.scss")
         .pipe(plumber())
         .pipe(sass({
