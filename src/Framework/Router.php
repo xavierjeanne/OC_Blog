@@ -72,6 +72,7 @@ class Router
     {
         //use router generateUri
         $redirectUri = $this->router->generateUri($path, $params);
+
         //retrieve response with generateUri
         return (new Response())->withStatus(301)->withHeader('Location', $redirectUri);
     }
