@@ -52,6 +52,7 @@ class PaginatedQuery implements AdapterInterface
         foreach ($results as $result) {
             $items[] = $this->model::createFromRow($result);
         }
+
         return $items;
     }
 }

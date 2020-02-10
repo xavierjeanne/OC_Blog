@@ -4,6 +4,7 @@ namespace Framework\Repository;
 
 use PDO;
 use Pagerfanta\Pagerfanta;
+use Framework\Repository\PaginatedQuery;
 
 class Repository
 {
