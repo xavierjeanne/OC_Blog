@@ -1,0 +1,21 @@
+{% extends "layout-front.html.twig" %}
+
+{% block title item.title %}
+
+{% block background '../img/post.jpg'%}
+
+{% block heading %}
+    <h2>{{item.title}}</h2>
+{% endblock %}
+{% block body %}
+	<div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">
+                <img class="img-fluid" src="{{item.picture}}" alt="{{item.title}}">
+                <p class="post-meta text-right">Ecrit par {{item.login}}, {{item.created_at|ago}}</p>
+                <hr>
+                <p>{{item.content|nl2br}}</p>
+            </div>
+        </div>
+      </div>
+{% endblock body %}
