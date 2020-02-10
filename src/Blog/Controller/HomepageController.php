@@ -2,7 +2,7 @@
 
 namespace App\Blog\Controller;
 
-use App\Blog\Repositories\PostRepository;
+use App\Blog\Repository\PostRepository;
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -23,9 +23,11 @@ class HomepageController
 
     public function __invoke(ServerRequestInterface $request)
     {
-        //get posts ,use method find all
-        $posts = $this->postRepository->findAll();
+        //get params of pagination if exist
+        $params=$request->getQueryParams();
+        //get posts ,use method find paginated published (only post published)
+        $items = $this->postRepository->findPaginated(5, $params['p'] ?? 1);
         //return render with the namespace @blog for index with posts
-        return $this->renderer->render('@blog/index', compact('posts'));
+        return $this->renderer->render('@blog/index', compact('items'));
     }
 }

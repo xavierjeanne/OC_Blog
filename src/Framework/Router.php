@@ -26,10 +26,6 @@ class Router
     /**
      * retrieve routes with get method
      *
-     * @param  string $path
-     * @param  string|callable $callable
-     * @param  string $name
-     *
      * @return void
      */
     public function get(string $path, $callable, ?string $name = null)
@@ -39,11 +35,7 @@ class Router
 
     /**
      * retrieve routes with post method
-     *
-     * @param  string $path
-     * @param  string|callable $callable
-     * @param  string $name
-     *
+     * 
      * @return void
      */
     public function delete(string $path, $callable, ?string $name = null)
@@ -54,10 +46,6 @@ class Router
     /**
      * retrieve routes with delete method
      *
-     * @param  string $path
-     * @param  string|callable $callable
-     * @param  string $name
-     *
      * @return void
      */
     public function post(string $path, $callable, ?string $name = null)
@@ -67,8 +55,6 @@ class Router
 
     /**
      * match url with routes and return a route or null
-     *
-     * @param  ServerRequestInterface $request
      *
      * @return Route|null
      */
@@ -85,5 +71,17 @@ class Router
             );
         }
         return null;
+    }
+
+    public function generateUri(string $name, array $params = [], array $queryParams = []): ?string
+    {
+        //generate uri
+        $uri = $this->router->generateUri($name, $params);
+        //if not empty $queryParams (pagination)
+        if (!empty($queryParams)) {
+            //return $uri with pagination
+            return $uri . '?' . http_build_query($queryParams);
+        }
+        return $uri;
     }
 }

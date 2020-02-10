@@ -4,8 +4,8 @@ namespace App\Admin;
 
 use Framework\Router;
 use Psr\Container\ContainerInterface;
-
 use App\Admin\Controller\HomepageAdminController;
+use Framework\Renderer\RendererInterface;
 
 /**
  * Module admin class,configurate and initiate the blogmodule with  and route

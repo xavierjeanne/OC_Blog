@@ -1,6 +1,8 @@
 <?php
+namespace Framework\Repository;
 
-namespace Framework;
+use PDO;
+use Pagerfanta\Pagerfanta;
 
 /**
  * repository class, action using table in database
@@ -12,14 +14,12 @@ class Repository
      */
     protected $pdo;
 
-    /**
-     *
+    /** */
      * @var Repository
      */
     protected $repository;
 
     /**
-     *
      * @var string|null
      */
     protected $entity;
@@ -52,10 +52,34 @@ class Repository
         return $query->fetch() ?: null;
     }
 
-    /**
-     * update fields in database
+     /**
+     * paginate element
      *
+     * @return Pagerfanta
      */
+    public function findPaginated(int $perPage, int $currentPage): Pagerfanta
+    {
+        //get all posts and make pagination and pass entity use(can now use datetime)
+        $query = new PaginatedQuery(
+            $this->pdo,
+            $this->paginationQuery(),
+            $this->countQuery(),
+            $this->entity
+        );
+        //return instance of pagerfanta withresult of query
+        return (new Pagerfanta($query))->setMaxPerPage($perPage)->setCurrentPage($currentPage);
+    }
+
+    protected function paginationQuery():string
+    {
+        return 'SELECT * FROM ' . $this->repository;
+    }
+
+    protected function countQuery():string
+    {
+        return 'SELECT COUNT(id) FROM ' . $this->repository;
+    }
+
     public function update(int $id, array $params): bool
     {
         //craete array with fields to update in request sql, array_map on params to dertiminate field
@@ -67,11 +91,6 @@ class Repository
         return $query->execute($params);
     }
 
-
-    /**
-     * insert an element in database
-     *
-     */
     public function insert(array $params): bool
     {
         //craete array with fields to update in request sql, array_map on params to dertiminate field
@@ -81,11 +100,6 @@ class Repository
         return $query->execute($params);
     }
 
-
-    /**
-     * delete an element
-     *
-     */
     public function delete(int $id): bool
     {
         $query = $this->pdo->prepare("DELETE FROM $this->repository WHERE id=?");
@@ -102,5 +116,15 @@ class Repository
         return join(', ', array_map(function ($field) {
             return "$field = :$field";
         }, array_keys($params)));
+    }
+
+    public function getRepository(): string
+    {
+        return $this->repository;
+    }
+
+    public function getPdo(): PDO
+    {
+        return $this->pdo;
     }
 }

@@ -2,6 +2,8 @@
 
 use Framework\Router;
 use Framework\Twig\TimeExtension;
+use Framework\Twig\PagerFantaExtension;
+use Framework\Twig\RouterTwigExtension;
 use Psr\Container\ContainerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
@@ -20,7 +22,9 @@ return [
     'view_path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
     //define twig extension
     'twig.extensions' => [
-        \DI\get(TimeExtension::class)
+        \DI\get(TimeExtension::class),
+        \DI\get(PagerFantaExtension::class),
+        \DI\get(RouterTwigExtension::class)
     ],
     //initiate renderer with twig renderer using config.view_path in constructor
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),

@@ -7,10 +7,6 @@ use Twig\TwigFilter;
 
 class TimeExtension extends AbstractExtension
 {
-    /**
-     *
-     * @return Twigfilter[]
-     */
     public function getFilters(): array
     {
         return [

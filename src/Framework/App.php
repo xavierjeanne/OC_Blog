@@ -64,6 +64,8 @@ class App
             return new Response(404, [], '<h1>Erreur 404</h1>');
         }
 
+         //get params from route
+         $params = $route->getParams();
         //get callback from route
         $callback = $route->getCallback();
 
