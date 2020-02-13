@@ -5,42 +5,42 @@ namespace App\Blog\Entity;
 class User
 {
     /**
-     * @var int 
+     * @var int
      */
     public $id;
 
     /**
-     * @var string 
+     * @var string
      */
     public $name;
 
     /**
-     * @var string 
+     * @var string
      */
     public $firstName;
 
     /**
-     * @var string 
+     * @var string
      */
     public $login;
 
     /**
-     * @var string 
+     * @var string
      */
     public $password;
 
     /**
-     * @var string 
+     * @var string
      */
     public $email;
 
     /**
-     * @var string 
+     * @var string
      */
     public $avatar;
 
     /**
-     * @var enum 
+     * @var enum
      * @options=["visitor","admin"]
      */
     public $status;

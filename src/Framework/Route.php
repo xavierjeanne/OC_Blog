@@ -8,20 +8,17 @@ namespace Framework;
 class Route
 {
     /**
-     *
      * @var string
      */
     private $name;
 
     /**
-     *
      * @var callable
      */
 
     private $callback;
 
     /**
-     *
      * @var array
      */
     private $params;

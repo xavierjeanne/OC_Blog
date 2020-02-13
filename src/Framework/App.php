@@ -10,20 +10,17 @@ use Psr\Http\Message\ServerRequestInterface;
 class App
 {
     /**
-     *
      * @var array
      */
     private $modules = [];
 
     /**
-     * router
      *
      * @var Router
      */
     private $router;
 
     /**
-     * ContainerInterface
      *
      * @var container
      */
