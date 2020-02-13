@@ -4,7 +4,7 @@ namespace App\Blog;
 
 use Framework\Router;
 use Psr\Container\ContainerInterface;
-use App\Blog\Controllers\HomepageController;
+use App\Blog\Controller\HomepageController;
 use Framework\Renderer\RendererInterface;
 
 /**

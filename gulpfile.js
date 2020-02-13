@@ -13,7 +13,7 @@ const uglify = require("gulp-uglify");
 // CSS task
 function css() {
     return gulp
-        .src("./front_asset/css/sass/*.scss")
+        .src("./front_asset/sass/*.scss")
         .pipe(plumber())
         .pipe(sass({
             outputStyle: "expanded",
@@ -23,7 +23,6 @@ function css() {
         .pipe(autoprefixer({
             cascade: false
         }))
-        .pipe(gulp.dest("./front_asset/css"))
         .pipe(rename({
             suffix: ".min"
         }))
@@ -46,7 +45,7 @@ function js() {
 
 // Watch files
 function watchFiles() {
-    gulp.watch("./front_asset/css/sass/*", css);
+    gulp.watch("./front_asset/sass/*", css);
     gulp.watch("./front_asset/js/*", js);
 }
 

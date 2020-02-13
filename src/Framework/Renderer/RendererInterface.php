@@ -2,9 +2,6 @@
 
 namespace Framework\Renderer;
 
-/**
- * render class
- */
 interface RendererInterface
 {
     /**

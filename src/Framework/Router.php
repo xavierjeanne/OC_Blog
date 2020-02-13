@@ -14,7 +14,6 @@ use Psr\Http\Message\ServerRequestInterface;
 class Router
 {
     /**
-     *
      * @var FastRouteRouter
      */
     private $router;

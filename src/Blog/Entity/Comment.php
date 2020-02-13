@@ -5,18 +5,17 @@ namespace App\Blog\Entity;
 class Comment
 {
     /**
-     *
-     * @var int 
+     * @var int
      */
     public $id;
 
     /**
-     * @var text 
+     * @var text
      */
     public $comment;
 
     /**
-     * @var int 
+     * @var int
      */
     public $userId;
 
@@ -27,18 +26,18 @@ class Comment
     public $postId;
 
     /**
-     * @var enum 
+     * @var enum
      * @options=["draft","published"]
      */
     public $status;
 
     /**
-     * @var datetime 
+     * @var datetime
      */
     public $created_at;
 
     /**
-     * @var datetime 
+     * @var datetime
      */
     public $updated_at;
 

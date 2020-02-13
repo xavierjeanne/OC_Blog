@@ -8,20 +8,17 @@ namespace Framework;
 class Repository
 {
     /**
-     *
      * @var \PDO
      */
     protected $pdo;
 
     /**
-     * table form database
      *
      * @var Repository
      */
     protected $repository;
 
     /**
-     * entity
      *
      * @var string|null
      */
