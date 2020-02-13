@@ -13,7 +13,7 @@ const uglify = require("gulp-uglify");
 // CSS task
 function cssFront() {
     return gulp
-        .src("./front_asset/*.scss")
+        .src("./front_asset/sass/*.scss")
         .pipe(plumber())
         .pipe(sass({
             outputStyle: "expanded",

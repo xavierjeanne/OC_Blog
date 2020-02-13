@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace App\Admin\Controller;
 
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
