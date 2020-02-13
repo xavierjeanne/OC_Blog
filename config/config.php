@@ -4,6 +4,7 @@ use Framework\Router;
 use Framework\Twig\TimeExtension;
 use Framework\Twig\PagerFantaExtension;
 use Framework\Twig\RouterTwigExtension;
+use Framework\Twig\FormExtension;
 use Psr\Container\ContainerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
@@ -25,7 +26,8 @@ return [
         \DI\get(TimeExtension::class),
         \DI\get(PagerFantaExtension::class),
         \DI\get(RouterTwigExtension::class),
-        \DI\get(\Twig\Extension\DebugExtension::class)
+        \DI\get(\Twig\Extension\DebugExtension::class),
+        \DI\get(FormExtension::class)
     ],
     //initiate renderer with twig renderer using config.view_path in constructor
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),

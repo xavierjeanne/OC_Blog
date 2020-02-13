@@ -7,13 +7,13 @@ use Framework\Repository\Repository;
 
 class CommentRepository extends Repository
 {
-    /**
-     * @var Post
-     */
-    protected $entity = Comment::class;
+     /**
+      * @var Post
+      */
+     protected $entity = Comment::class;
 
-    /**
-     * @var string
-     */
-    protected $table = 'comments';
+     /**
+      * @var string
+      */
+     protected $table = 'comments';
 }
