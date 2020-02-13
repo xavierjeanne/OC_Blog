@@ -10,36 +10,30 @@ use Pagerfanta\Adapter\AdapterInterface;
 class PaginatedQuery implements AdapterInterface
 {
     /**
-     * Undocumented variable
-     *
+     * 
      * @var \PDO pdo
      */
     private $pdo;
 
     /**
-     * Undocumented variable
-     *
      * @var string query
      */
     private $query;
 
     /**
-     * Undocumented variable
      *
      * @var string countQuery
      */
     private $countQuery;
 
     /**
-     * Undocumented variable
      *
      * @var string|null
      */
     private $entity;
 
     /**
-     * Undocumented function
-     * @param array $params
+     * @param array 
      */
     private $params;
 
