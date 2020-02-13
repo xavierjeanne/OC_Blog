@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Blog\Controllers;
+namespace App\Blog\Controller;
 
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,7 +18,7 @@ class HomepageController
         $this->renderer = $renderer;
     }
 
-    public function __invoke(ServerRequestInterface $request):void
+    public function __invoke(ServerRequestInterface $request)
     {
         return $this->renderer->render('@blog/index');
     }
