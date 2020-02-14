@@ -10,38 +10,38 @@ class Post
     public $id;
 
     /**
-     * @var string 
+     * @var string
      */
     public $title;
 
     /**
-     * @var text 
+     * @var text
      */
     public $content;
 
     /**
-     * @var string 
+     * @var string
      */
     public $picture;
 
     /**
-     * @var enum 
+     * @var enum
      * @options=["draft","published"]
      */
     public $status;
 
     /**
-     * @var datetime 
+     * @var datetime
      */
     public $created_at;
 
     /**
-     * @var datetime 
+     * @var datetime
      */
     public $updated_at;
 
     /**
-     * @var int 
+     * @var int
      */
     public $userId;
 

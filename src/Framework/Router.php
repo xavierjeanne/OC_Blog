@@ -35,7 +35,7 @@ class Router
 
     /**
      * retrieve routes with post method
-     * 
+     *
      * @return void
      */
     public function delete(string $path, $callable, ?string $name = null)

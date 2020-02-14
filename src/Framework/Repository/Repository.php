@@ -1,4 +1,5 @@
 <?php
+
 namespace Framework\Repository;
 
 use PDO;
@@ -14,7 +15,7 @@ class Repository
      */
     protected $pdo;
 
-    /** */
+    /**
      * @var Repository
      */
     protected $repository;
@@ -52,7 +53,7 @@ class Repository
         return $query->fetch() ?: null;
     }
 
-     /**
+    /**
      * paginate element
      *
      * @return Pagerfanta
@@ -70,12 +71,12 @@ class Repository
         return (new Pagerfanta($query))->setMaxPerPage($perPage)->setCurrentPage($currentPage);
     }
 
-    protected function paginationQuery():string
+    protected function paginationQuery(): string
     {
         return 'SELECT * FROM ' . $this->repository;
     }
 
-    protected function countQuery():string
+    protected function countQuery(): string
     {
         return 'SELECT COUNT(id) FROM ' . $this->repository;
     }

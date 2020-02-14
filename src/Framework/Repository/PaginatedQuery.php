@@ -10,7 +10,6 @@ use Pagerfanta\Adapter\AdapterInterface;
 class PaginatedQuery implements AdapterInterface
 {
     /**
-     * 
      * @var \PDO pdo
      */
     private $pdo;
@@ -21,29 +20,20 @@ class PaginatedQuery implements AdapterInterface
     private $query;
 
     /**
-     *
      * @var string countQuery
      */
     private $countQuery;
 
     /**
-     *
      * @var string|null
      */
     private $entity;
 
     /**
-     * @param array 
+     * @param array
      */
     private $params;
 
-    /**
-     *
-     * @param \PDO $pdo
-     * @param string $query
-     * @param string $countQuery
-     * @param string|null $entity
-     */
     public function __construct(\PDO $pdo, string $query, string $countQuery, ?string $entity, array $params = [])
     {
         $this->pdo = $pdo;

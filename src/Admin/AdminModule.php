@@ -27,4 +27,3 @@ class AdminModule
         $router->get('/admin', HomepageAdminController::class, 'admin.index');
     }
 }
-

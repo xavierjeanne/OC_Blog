@@ -8,7 +8,6 @@ use Pagerfanta\Pagerfanta;
 use Twig\Extension\AbstractExtension;
 use Pagerfanta\View\TwitterBootstrap4View;
 
-
 class PagerFantaExtension extends AbstractExtension
 {
     /**
@@ -39,9 +38,8 @@ class PagerFantaExtension extends AbstractExtension
             }
             //generate url with route and parametre p and current page
             return $this->router->generateUri($route, $routerParams, $queryArgs);
-        },$options = array(
+        }, $options = [
             'prev_message'=>'&larr; Précédent',
-            'next_message' => 'Suivant &rarr;',)
-        );
+            'next_message' => 'Suivant &rarr;',]);
     }
 }

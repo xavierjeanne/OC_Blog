@@ -14,7 +14,6 @@ class TimeExtension extends AbstractExtension
         ];
     }
 
-
     public function ago(\Datetime $date, string $format = 'd/m/y H:i'): string
     {
         return '<span class="timeago" datetime="' . $date->format(\DateTime::ISO8601) . '">' . $date->format($format) . '</span>';
