@@ -4,7 +4,7 @@ namespace App\Blog;
 
 use Framework\Router;
 use Psr\Container\ContainerInterface;
-use Framework\Renderer\RendererInterface;
+use App\Blog\Controller\BlogController;
 use App\Blog\Controller\HomepageController;
 use App\Blog\Controller\PostShowController;
 
@@ -17,8 +17,10 @@ class BlogModule
         //inject router
         $router = $container->get(Router::class);
         //declare route
-        //route homepage
-        $router->get('/blog', HomepageController::class, 'blog.index');
+        //homepage route
+        $router->get('/home', HomepageController::class, 'blog.index');
+        //route blog
+        $router->get('/blog', BlogController::class, 'blog.blog');
         //route post show
         $router->get('/blog/{id:[0-9]+}', PostShowController::class, 'blog.show');
     }
