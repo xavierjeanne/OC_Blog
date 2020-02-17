@@ -3,6 +3,8 @@
 namespace Framework\Repository;
 
 use Pagerfanta\Adapter\AdapterInterface;
+use Framework\Repsoitory;
+use Framework\Repository\Hydrator;
 
 /**
  * class paginatedquery to enable pagination for response
@@ -54,7 +56,7 @@ class PaginatedQuery implements AdapterInterface
         return $this->pdo->query($this->countQuery)->fetchColumn();
     }
 
-    public function getSlice($offset, $length): array
+    public function getSlice($offset, $length)
     {
         //prepare query with offset and length
         $query = $this->pdo->prepare($this->query . ' LIMIT :offset, :length');
@@ -63,11 +65,12 @@ class PaginatedQuery implements AdapterInterface
         }
         $query->bindParam('offset', $offset, \PDO::PARAM_INT);
         $query->bindParam('length', $length, \PDO::PARAM_INT);
-        if ($this->entity) {
-            //define query to be a class entity
-            $query->setFetchMode(\PDO::FETCH_CLASS, $this->entity);
-        }
         $query->execute();
-        return $query->fetchAll();
+        $results = $query->fetchAll();
+        $items=[];
+        foreach ($results as $result) {
+            $items[]=$this->entity::createFromRow($result);
+        }
+        return $items;
     }
 }

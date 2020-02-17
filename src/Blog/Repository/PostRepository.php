@@ -25,6 +25,6 @@ class PostRepository extends Repository
 
     protected function paginationQuery():string
     {
-        return "SELECT * FROM  $this->repository as p INNER JOIN users as u ON p.user_id=u.id WHERE p.status ='published' ORDER BY p.created_at DESC";
+        return "SELECT *  FROM  $this->repository as p INNER JOIN users as u ON p.user_id = u.id WHERE p.status ='published' ORDER BY p.created_at DESC";
     }
 }

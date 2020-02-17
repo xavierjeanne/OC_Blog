@@ -38,8 +38,6 @@ return [
             $interneContainer->get('database.username'),
             $interneContainer->get('database.password'),
             [
-                //config pdo to retrieve result like object
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                 //config pdo to retrieve erreur like exception
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]
