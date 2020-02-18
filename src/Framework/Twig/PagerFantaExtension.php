@@ -20,7 +20,7 @@ class PagerFantaExtension extends AbstractExtension
         $this->router = $router;
     }
 
-    public function getFunctions():array
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('paginate', [$this, 'paginate'], ['is_safe' => ['html']]),
@@ -31,15 +31,19 @@ class PagerFantaExtension extends AbstractExtension
     {
         //create view bootstrap paginator
         $view = new TwitterBootstrap4View();
+
         //create render pagerfanta
         return $view->render($paginatedResults, function (int $page) use ($route, $routerParams, $queryArgs) {
+
             if ($page > 1) {
                 $queryArgs['p'] = $page;
             }
+
             //generate url with route and parametre p and current page
             return $this->router->generateUri($route, $routerParams, $queryArgs);
         }, $options = [
-            'prev_message'=>'&larr; Précédent',
-            'next_message' => 'Suivant &rarr;',]);
+            'prev_message' => '&larr; Précédent',
+            'next_message' => 'Suivant &rarr;',
+        ]);
     }
 }

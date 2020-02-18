@@ -15,5 +15,5 @@ class CommentRepository extends Repository
     /**
      * @var string
      */
-    protected $repository = 'comments';
+    protected $table = 'comments';
 }

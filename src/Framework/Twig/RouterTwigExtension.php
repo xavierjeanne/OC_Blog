@@ -6,9 +6,6 @@ use Framework\Router;
 use Twig\TwigFunction;
 use Twig\Extension\AbstractExtension;
 
-/**
- * twig extension class for router, create a router fontion to use in navigation
- */
 class RouterTwigExtension extends AbstractExtension
 {
     /**
@@ -20,8 +17,8 @@ class RouterTwigExtension extends AbstractExtension
     {
         $this->router = $router;
     }
-   
-    public function getFunctions():array
+
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('path', [$this, 'pathFor']),

@@ -16,12 +16,6 @@ class App
 
     /**
      *
-     * @var Router
-     */
-    private $router;
-
-    /**
-     *
      * @var container
      */
     private $container;
@@ -35,13 +29,6 @@ class App
         }
     }
 
-    /**
-     * run app and send response
-     *
-     * @param  mixed $request
-     *
-     * @return ResponseInterface
-     */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         //get path uri of request
@@ -64,8 +51,6 @@ class App
             return new Response(404, [], '<h1>Erreur 404</h1>');
         }
 
-         //get params from route
-         $params = $route->getParams();
         //get callback from route
         $callback = $route->getCallback();
 

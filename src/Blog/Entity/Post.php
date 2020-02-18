@@ -50,11 +50,6 @@ class Post
      */
     public $userId;
 
-    /**
-     * @var string
-     */
-    public $userLogin;
-
     public static function createFromRow(array $row): Post
     {
         $post = new self();
@@ -63,14 +58,15 @@ class Post
         $post->abstract = $row['abstract'];
         $post->content = $row['content'];
         $post->userId = $row['user_id'];
-        $post->userLogin = $row['login'];
         $post->picture = $row['picture'];
         $post->status = $row['status'];
         $post->createdAt = new \Datetime($row['created_at']);
         $post->updatedAt = new \Datetime($row['updated_at']);
+
         if ($post->picture === null) {
-            $post->picture='/img/picture/default.png';
+            $post->picture = '/img/picture/default.png';
         }
+
         return $post;
     }
 }

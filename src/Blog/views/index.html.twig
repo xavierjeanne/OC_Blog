@@ -14,16 +14,16 @@
 						<p><img src="{{item.picture}}" alt="{{item.title}}"></p>
 					</a>
 					<p class="post-meta">Ecrit par
-						{{item.userLogin}},
+						{{item.autorUsername}},
 						{{item.createdAt|ago}}</p>
 				</div>
 				<hr>
 			</div>
 		</div>
 	{% endfor %}
-		<div class="row mt-5 justify-content-md-center">
-		<div class="offset-lg-2 col-lg-8 col-md-10">	
+	<div class="row mt-5 justify-content-md-center">
+		<div class="offset-lg-2 col-lg-8 col-md-10">
 			{{paginate(items,'blog.index')}}
-			</div>
 		</div>
+	</div>
 {% endblock body %}

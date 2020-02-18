@@ -7,16 +7,8 @@ use Psr\Container\ContainerInterface;
 use App\Blog\Controller\HomepageController;
 use Framework\Renderer\RendererInterface;
 
-/**
- * Module blog class,configurate and initiate the blogmodule with  and route
- */
 class BlogModule
 {
-    /**
-     * construct route for this module
-     *
-     * @param ContainerInterface
-     */
     public function __construct(ContainerInterface $container)
     {
         //add views to renderer(instance of renderer by container)
