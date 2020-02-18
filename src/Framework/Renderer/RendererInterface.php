@@ -9,7 +9,6 @@ interface RendererInterface
      */
     public function addPath(string $namespace, ?string $path = null): void;
 
-
     /**
      * render the view corresponding to path with params of request
      * path can be precise with namesapce add with addPath

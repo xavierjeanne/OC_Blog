@@ -2,62 +2,62 @@
 
 namespace App\Blog\Repository;
 
-use Framework\Repository\Repository;
 use App\Blog\Entity\Post;
+use App\Blog\Model\ShowPost;
+use App\Blog\Model\ShortPost;
+use Framework\Repository\Repository;
 use App\Blog\Repository\UserRepository;
 
-/**
- * method use for management PostRepository
- */
 class PostRepository extends Repository
 {
     /**
-     * Undocumented variable
-     *
      * @var Post
      */
     protected $entity = Post::class;
 
     /**
-     * Undocumented variable
-     *
      * @var string
      */
-    protected $repository = 'posts';
+    protected $table = 'posts';
 
     /**
-     * get count query
      *
-     * @return string
+     * @var ShortPost
      */
-    protected function countQuery()
+    protected $model = ShortPost::class;
+
+    protected function countQuery(): string
     {
-        return "SELECT COUNT(id) FROM  $this->repository WHERE status ='published'";
+        return "SELECT COUNT(id) FROM  $this->table WHERE status ='published'";
     }
 
-    /**
-     * get pagination query
-     *
-     * @return string
-     */
-    protected function paginationQuery()
+    protected function paginationQuery(): string
     {
-        $users = new UserRepository($this->pdo);
-        $userRepository=$users->getRepository();
-        return "SELECT p.id as postId,p.*,u.* FROM  $this->repository as p INNER JOIN $userRepository as u ON p.user_id=u.id WHERE p.status ='published' ORDER BY p.created_at DESC";
+        return "SELECT p.id as postId,p.picture,p.created_at,p.abstract,p.title,u.login 
+        FROM  $this->table as p 
+        INNER JOIN users as u 
+        ON p.user_id = u.id 
+        WHERE p.status ='published' 
+        ORDER BY p.created_at DESC";
     }
 
-     /**
-     * get a post with id
-     *
-     */
     public function find(int $id)
     {
-        $users = new UserRepository($this->pdo);
-        $userRepository=$users->getRepository();
-        $query = $this->pdo->prepare("SELECT * FROM $this->repository as p INNER JOIN $userRepository as u ON p.user_id=u.id  WHERE p.id=?");
+        $query = $this->pdo->prepare(
+            "SELECT p.picture,p.created_at,p.abstract,p.title,p.content,u.login 
+            FROM  $this->table as p 
+            INNER JOIN users as u 
+            ON p.user_id = u.id 
+            WHERE p.id=?"
+        );
         $query->execute([$id]);
-        $query->setFetchMode(\PDO::FETCH_CLASS, $this->entity);
-        return $query->fetch() ?: null;
+        $result = $query->fetch();
+
+        if ($result) {
+            $item = ShowPost::createFromRow($result);
+            return $item;
+        }
+
+        return $result;
     }
 }

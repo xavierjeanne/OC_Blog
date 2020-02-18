@@ -1,29 +1,21 @@
 <?php
+
 namespace Framework\Validator;
 
-/**
- * validation class, retrieve message of error validation
- */
 class ValidationError
 {
 
     /**
-     * Undocumented variable
-     *
      * @var string
      */
     private $key;
 
     /**
-     * Undocumented variable
-     *
      * @var string
      */
     private $rule;
 
     /**
-     * Undocumented variable
-     *
      * @var array
      * */
     private $attributes;
@@ -36,7 +28,8 @@ class ValidationError
         'betweenLength' => 'Le champ %s doit contenir entre %d et %d caractères',
         'datetime' => 'Le champ %s doit être au format %d',
         'exists' => 'Le champ %s n\'existe pas dans la table %s',
-        'unique' => 'Le champ %s  doit être unique'
+        'unique' => 'Le champ %s  doit être unique',
+        'email' => 'Le champ %s doit être une adresse valide'
     ];
 
     public function __construct(string $key, string $rule, array $attributes = [])
@@ -46,16 +39,11 @@ class ValidationError
         $this->attributes = $attributes;
     }
 
-
-    /**
-     * return text error
-     *
-     * @return string
-     */
     public function __toString()
     {
         //store key messages of rule and attributes in params
         $params = array_merge([$this->messages[$this->rule], $this->key], $this->attributes);
+
         //return messages error coresponding to  rule for key
         return (string) call_user_func_array('sprintf', $params);
     }

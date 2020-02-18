@@ -10,10 +10,10 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-10 mx-auto">
 			<p>Vous voulez prendre contact avec moi, remplissez les champs suivants et je vous recontacterais dés que possible !</p>
-			<form action="blog.index" method="post">
-				{{field('name',item.name,"Nom")}}
-				{{field('email',item.name,"Email")}}
-				{{field('content',item.name,"Message",{type:'textarea'})}}
+			<form action="" method="post" class="needs-validation" novalidate>
+				{{field('name',item.name,"Nom",{required:'required'})}}
+				{{field('email',item.email,"Email",{required:'required',type:'email',pattern:"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"})}}
+				{{field('content',item.content,"Message",{required:'required',type:'textarea'})}}
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Envoyer</button>
 				</div>

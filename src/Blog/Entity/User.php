@@ -45,21 +45,21 @@ class User
       */
      public $status;
 
-     public static function createFromRow(array $row): User
-     {
-          $user = new self();
-          $user->id = $row['id'];
-          $user->name = $row['name'];
-          $user->firstName = $row['first_name'];
-          $user->login = $row['login'];
-          $user->password = $row['password'];
-          $user->avatar = $row['avatar'];
-          $user->status = $row['status'];
+    public static function createFromRow(array $row): User
+    {
+         $user = new self();
+         $user->id = $row['id'];
+         $user->name = $row['name'];
+         $user->firstName = $row['first_name'];
+         $user->login = $row['login'];
+         $user->password = $row['password'];
+         $user->avatar = $row['avatar'];
+         $user->status = $row['status'];
 
-          if ($user->avatar === null) {
-               $user->avatar = '/img/avatar/anonymous.png';
-          }
+        if ($user->avatar === null) {
+             $user->avatar = '/img/avatar/anonymous.png';
+        }
 
-          return $user;
-     }
+         return $user;
+    }
 }

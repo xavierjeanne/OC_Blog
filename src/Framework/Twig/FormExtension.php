@@ -15,16 +15,6 @@ class FormExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * create field
-     *
-     * @param  mixed $key
-     * @param  mixed $value
-     * @param  mixed $label
-     * @param  mixed $options
-     *
-     * @return void
-     */
     public function field($context, string $key, $value, ?string $label = null, array $options = [])
     {
         //get type if exist, else type=text
@@ -39,12 +29,25 @@ class FormExtension extends AbstractExtension
         $attributes = [
             'class' => trim('form-control ' . ($options['class'] ?? '')),
             'name' => $key,
-            'id' => $key
+            'id' => $key,
         ];
+        $invalid =  "<div class=\"invalid-feedback\">Ce champ est obligatoire.</div>";
+
+        if (isset($options['required'])) {
+            $attributes['required'] = $options['required'];
+        }
+
+        if (isset($options['pattern'])) {
+            $attributes['pattern'] = $options['pattern'];
+            $invalid = "<div class=\"invalid-feedback\">Merci de renseigner un email valide.</div>";
+        }
+
         if ($error) {
             $class .= ' has-danger';
             $attributes['class'] = ' form-control is-invalid';
+            $invalid = "";
         }
+
         if ($type === 'textarea') {
             $input = $this->textarea($value, $attributes);
         }
@@ -54,7 +57,12 @@ class FormExtension extends AbstractExtension
         } else {
             $input = $this->input($value, $attributes);
         }
-        return "<div class=\"" .  $class . "\"><label for=\"$key\">$label</label>$input $error</div>";
+
+        return "<div class=\"" .  $class . "\">
+                    <label for=\"$key\">$label</label>
+                    $input $error
+                    $invalid
+                </div>";
     }
 
     private function getErrorHtml($context, $key)
@@ -67,28 +75,11 @@ class FormExtension extends AbstractExtension
         return "";
     }
 
-    /**
-     * textarea input
-     *
-     * @param  mixed $key
-     * @param  mixed $value
-     * @param  mixed $attributes
-     *
-     * @return string
-     */
     private function textarea(?string $value, array $attributes): string
     {
         return "<textarea " . $this->getHtmlFromArray($attributes) . " >$value</textarea>";
     }
 
-    /**
-     * select input
-     *
-     * @param string|null $value
-     * @param array $options
-     * @param array $attributes
-     * @return void
-     */
     private function select(?string $value, array $options, array $attributes)
     {
         //generate htmloption with list options
@@ -99,27 +90,11 @@ class FormExtension extends AbstractExtension
         return "<select " . $this->getHtmlFromArray($attributes) . ">$htmlOptions</select>";
     }
 
-    /**
-     * input
-     *
-     * @param  mixed $key
-     * @param  mixed $value
-     * @param  mixed $attributes
-     *
-     * @return string
-     */
     private function input(?string $value, array $attributes): string
     {
         return "<input type=\"text\"  " . $this->getHtmlFromArray($attributes) . " value=\"$value\"/>";
     }
 
-    /**
-     * getHtmlFromArray
-     *
-     * @param  mixed $attributes
-     *
-     * @return void
-     */
     private function getHtmlFromArray(array $attributes)
     {
         $htmlParts = [];
@@ -134,13 +109,6 @@ class FormExtension extends AbstractExtension
         return implode(' ', $htmlParts);
     }
 
-    /**
-     * convertValue
-     *
-     * @param  mixed $value
-     *
-     * @return string
-     */
     private function convertValue($value): string
     {
         //if value is datetime, return a format Y-m-d h:i:s

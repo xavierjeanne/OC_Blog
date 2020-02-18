@@ -12,8 +12,6 @@ class HomepageAdminController
      */
     private $renderer;
 
-    private $postRepository;
-
     public function __construct(RendererInterface $renderer)
     {
         $this->renderer = $renderer;

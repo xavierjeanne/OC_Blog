@@ -50,23 +50,23 @@ class Post
       */
      public $userId;
 
-     public static function createFromRow(array $row): Post
-     {
-          $post = new self();
-          $post->title = $row['title'];
-          $post->id = $row['id'];
-          $post->abstract = $row['abstract'];
-          $post->content = $row['content'];
-          $post->userId = $row['user_id'];
-          $post->picture = $row['picture'];
-          $post->status = $row['status'];
-          $post->createdAt = new \Datetime($row['created_at']);
-          $post->updatedAt = new \Datetime($row['updated_at']);
+    public static function createFromRow(array $row): Post
+    {
+         $post = new self();
+         $post->title = $row['title'];
+         $post->id = $row['id'];
+         $post->abstract = $row['abstract'];
+         $post->content = $row['content'];
+         $post->userId = $row['user_id'];
+         $post->picture = $row['picture'];
+         $post->status = $row['status'];
+         $post->createdAt = new \Datetime($row['created_at']);
+         $post->updatedAt = new \Datetime($row['updated_at']);
 
-          if ($post->picture === null) {
-               $post->picture = '/img/picture/default.png';
-          }
+        if ($post->picture === null) {
+             $post->picture = '/img/picture/default.png';
+        }
 
-          return $post;
-     }
+         return $post;
+    }
 }
