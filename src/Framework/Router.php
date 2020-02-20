@@ -2,10 +2,12 @@
 
 namespace Framework;
 
-use Framework\Middleware\CallableMidlleware;
 use Framework\Route;
+use GuzzleHttp\Psr7\Response;
 use Mezzio\Router\FastRouteRouter;
 use Mezzio\Router\Route as MezzioRoute;
+use Psr\Http\Message\ResponseInterface;
+use Framework\Middleware\CallableMidlleware;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Router
@@ -64,5 +66,13 @@ class Router
         }
 
         return $uri;
+    }
+
+    public function redirect(string $path, array $params = []): ResponseInterface
+    {
+        //use router generateUri
+        $redirectUri = $this->router->generateUri($path, $params);
+        //retrieve response with generateUri
+        return (new Response())->withStatus(301)->withHeader('Location', $redirectUri);
     }
 }

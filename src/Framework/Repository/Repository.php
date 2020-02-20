@@ -45,9 +45,7 @@ class Repository
     {
         $query = $this->pdo->prepare("SELECT * FROM  $this->table WHERE id=?");
         $query->execute([$id]);
-        $query->setFetchMode(\PDO::FETCH_CLASS, $this->entity);
-
-        return $query->fetch() ?: null;
+        return $query->fetch();
     }
 
     public function findPaginated(int $perPage, int $currentPage): Pagerfanta

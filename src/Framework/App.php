@@ -44,7 +44,7 @@ class App
 
         //get route with match method of router
         $route = $router->match($request);
-        
+
         //if route is nul send error 404
         if (is_null($route)) {
             //create response 404
@@ -53,12 +53,12 @@ class App
 
         //get params from route
         $params = $route->getParams();
-        
+
         //send atttibute to request
         $request = array_reduce(array_keys($params), function ($request, $key) use ($params) {
             return $request->withAttribute($key, $params[$key]);
         }, $request);
-        
+
         //get callback from route
         $callback = $route->getCallback();
 
