@@ -4,8 +4,8 @@ require 'public/index.php';
 
 return [
     'paths' => [
-        'migrations' => $migrations,
-        'seeds' => $seeds
+        'migrations' => 'db/migrations',
+        'seeds' => 'db/seeds'
     ],
     'environments' => [
         'default_database' => 'development',

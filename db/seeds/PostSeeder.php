@@ -19,6 +19,7 @@ class PostSeeder extends AbstractSeed
         for ($i = 0; $i < 50; $i++) {
             $data[] = [
                 'title' => $faker->catchPhrase,
+                'abstract' => $faker->catchPhrase,
                 'content' => $faker->text(2000),
                 'status' => $faker->randomElement(['draft', 'published']),
                 'user_id' => $faker->randomElement([1, 4, 6, 7, 9, 10]),
