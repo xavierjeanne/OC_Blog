@@ -31,6 +31,10 @@ class PagerFantaExtension extends AbstractExtension
     {
         //create view bootstrap paginator
         $view = new TwitterBootstrap4View();
+        $options = [
+            'prev_message' => '&larr; Précédent',
+            'next_message' => 'Suivant &rarr;',
+        ];
 
         //create render pagerfanta
         return $view->render($paginatedResults, function (int $page) use ($route, $routerParams, $queryArgs) {
@@ -41,9 +45,6 @@ class PagerFantaExtension extends AbstractExtension
 
             //generate url with route and parametre p and current page
             return $this->router->generateUri($route, $routerParams, $queryArgs);
-        }, $options = [
-            'prev_message' => '&larr; Précédent',
-            'next_message' => 'Suivant &rarr;',
-        ]);
+        }, $options);
     }
 }

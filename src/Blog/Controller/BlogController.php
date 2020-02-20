@@ -24,7 +24,7 @@ class BlogController
         $this->postRepository = $postRepository;
     }
 
-    public function __invoke(ServerRequestInterface $request)
+    public function __invoke(ServerRequestInterface $request): string
     {
         //get params of pagination if exist
         $params = $request->getQueryParams();

@@ -52,7 +52,7 @@ class Router
         return null;
     }
 
-    public function generateUri(string $name, array $params = [], array $queryParams = []): ?string
+    public function generateUri(string $name, array $params = [], array $queryParams = []): string
     {
         //generate uri
         $uri = $this->router->generateUri($name, $params);

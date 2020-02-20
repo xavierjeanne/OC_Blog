@@ -39,7 +39,7 @@ class PaginatedQuery implements AdapterInterface
         return $this->pdo->query($this->countQuery)->fetchColumn();
     }
 
-    public function getSlice($offset, $length)
+    public function getSlice($offset, $length): array
     {
         //prepare query with offset and length
         $query = $this->pdo->prepare($this->query . ' LIMIT :offset, :length');
@@ -52,7 +52,6 @@ class PaginatedQuery implements AdapterInterface
         foreach ($results as $result) {
             $items[] = $this->model::createFromRow($result);
         }
-
         return $items;
     }
 }

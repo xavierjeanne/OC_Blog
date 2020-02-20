@@ -110,7 +110,7 @@ class Repository
         }, array_keys($params)));
     }
 
-    public function gettable(): string
+    public function getTable(): string
     {
         return $this->table;
     }
