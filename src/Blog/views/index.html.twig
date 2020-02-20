@@ -7,23 +7,16 @@
 		<div class="row">
 			<div class="col-lg-8 col-md-10 mx-auto">
 				<div class="post-preview">
-					<a href="#">
+					<a href="{{path('blog.show',{id:item.id})}}">
 						<h2 class="post-title">
-							{{item.title}}
-						</h2>
+							{{item.title}}</h2>
 						<p><img src="{{item.picture}}" alt="{{item.title}}"></p>
 					</a>
-					<p class="post-meta">Ecrit par
-						{{item.autorUsername}},
-						{{item.createdAt|ago}}</p>
-				</div>
-				<hr>
-			</div>
+					<p class="post-meta">Ecrit par{{item.autorUsername}},{{item.createdAt|ago}}</p>
+				</div><hr></div>
 		</div>
 	{% endfor %}
 	<div class="row mt-5 justify-content-md-center">
-		<div class="offset-lg-2 col-lg-8 col-md-10">
-			{{paginate(items,'blog.index')}}
-		</div>
+		<div class="offset-lg-2 col-lg-8 col-md-10">{{paginate(items,'blog.index')}}</div>
 	</div>
 {% endblock body %}

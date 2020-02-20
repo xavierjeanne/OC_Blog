@@ -24,7 +24,8 @@ return [
     'twig.extensions' => [
         \DI\get(TimeExtension::class),
         \DI\get(PagerFantaExtension::class),
-        \DI\get(RouterTwigExtension::class)
+        \DI\get(RouterTwigExtension::class),
+        \DI\get(\Twig\Extension\DebugExtension::class)
     ],
     //initiate renderer with twig renderer using config.view_path in constructor
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),

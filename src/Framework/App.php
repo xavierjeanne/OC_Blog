@@ -51,6 +51,14 @@ class App
             return new Response(404, [], '<h1>Erreur 404</h1>');
         }
 
+        //get params from route
+        $params = $route->getParams();
+
+        //send atttibute to request
+        $request = array_reduce(array_keys($params), function ($request, $key) use ($params) {
+            return $request->withAttribute($key, $params[$key]);
+        }, $request);
+
         //get callback from route
         $callback = $route->getCallback();
 

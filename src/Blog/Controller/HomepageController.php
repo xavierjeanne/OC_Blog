@@ -14,7 +14,6 @@ class HomepageController
     private $renderer;
 
     /**
-     *
      * @var PostRepository
      */
     private $postRepository;

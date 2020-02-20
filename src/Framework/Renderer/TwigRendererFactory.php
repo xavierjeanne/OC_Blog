@@ -19,7 +19,9 @@ class TwigRendererFactory
         $loader = new \Twig\Loader\FilesystemLoader($viewPath);
 
         //instantaite twig with loader
-        $twig = new \Twig\Environment($loader);
+        $twig = new \Twig\Environment($loader, [
+            'debug' => true
+        ]);
 
         //if container has twig extensions foreach extension add extension to twigRenderer
         if ($container->has('twig.extensions')) {

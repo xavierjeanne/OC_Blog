@@ -4,6 +4,7 @@ namespace App\Blog\Repository;
 
 use App\Blog\Entity\Post;
 use App\Blog\Model\ShortPost;
+use App\Blog\Model\ShowPost;
 use Framework\Repository\Repository;
 
 class PostRepository extends Repository
@@ -18,6 +19,31 @@ class PostRepository extends Repository
      */
     protected $table = 'posts';
 
+    /**
+     * @var Post
+     */
+    protected $entity = Post::class;
+
+    public function find(int $id)
+    {
+        $query = $this->pdo->prepare(
+            "SELECT p.picture,p.created_at,p.abstract,p.title,p.content,u.login 
+            FROM  $this->table as p 
+            INNER JOIN users as u 
+            ON p.user_id = u.id 
+            WHERE p.id=?"
+        );
+        $query->execute([$id]);
+        $result = $query->fetch();
+
+        if ($result) {
+            $item = ShowPost::createFromRow($result);
+            return $item;
+        }
+
+        return $result;
+    }
+
     protected function countQuery(): string
     {
         return "SELECT COUNT(id) FROM  $this->table WHERE status ='published'";
@@ -25,6 +51,11 @@ class PostRepository extends Repository
 
     protected function paginationQuery(): string
     {
-        return "SELECT *  FROM  $this->table as p INNER JOIN users as u ON p.user_id = u.id WHERE p.status ='published' ORDER BY p.created_at DESC";
+        return "SELECT p.id as postId,p.picture,p.created_at,p.abstract,p.title,u.login 
+            FROM  $this->table as p 
+            INNER JOIN users as u 
+            ON p.user_id = u.id 
+            WHERE p.status ='published' 
+            ORDER BY p.created_at DESC";
     }
 }

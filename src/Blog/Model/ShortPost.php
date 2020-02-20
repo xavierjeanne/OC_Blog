@@ -36,18 +36,18 @@ class ShortPost
 
     public static function createFromRow(array $row): ShortPost
     {
-        $ShortPost = new self();
-        $ShortPost->title = $row['title'];
-        $ShortPost->id = $row['id'];
-        $ShortPost->abstract = $row['abstract'];
-        $ShortPost->picture = $row['picture'];
-        $ShortPost->autorUsername = $row['login'];
-        $ShortPost->createdAt = new \Datetime($row['created_at']);
+        $shortPost = new self();
+        $shortPost->title = $row['title'];
+        $shortPost->id = $row['postId'];
+        $shortPost->abstract = $row['abstract'];
+        $shortPost->picture = $row['picture'];
+        $shortPost->autorUsername = $row['login'];
+        $shortPost->createdAt = new \Datetime($row['created_at']);
 
-        if ($ShortPost->picture === null) {
-            $ShortPost->picture = '/img/picture/default.png';
+        if ($shortPost->picture === null) {
+            $shortPost->picture = '/img/picture/default.png';
         }
 
-        return $ShortPost;
+        return $shortPost;
     }
 }
