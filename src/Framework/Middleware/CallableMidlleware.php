@@ -23,9 +23,6 @@ class CallableMidlleware implements MiddlewareInterface
     /**
      * process an incoming server request and return a response
      *
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

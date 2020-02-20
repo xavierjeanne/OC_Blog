@@ -1,6 +1,9 @@
 <?php
 
 use Framework\Router;
+use Framework\Twig\TimeExtension;
+use Framework\Twig\PagerFantaExtension;
+use Framework\Twig\RouterTwigExtension;
 use Psr\Container\ContainerInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
@@ -17,6 +20,12 @@ return [
     'database.name' => 'ocblog',
     //define view path for twig template
     'view_path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
+    //define twig extension
+    'twig.extensions' => [
+        \DI\get(TimeExtension::class),
+        \DI\get(PagerFantaExtension::class),
+        \DI\get(RouterTwigExtension::class)
+    ],
     //initiate renderer with twig renderer using config.view_path in constructor
     RendererInterface::class => \DI\factory(TwigRendererFactory::class),
     //initiate router
@@ -29,8 +38,6 @@ return [
             $interneContainer->get('database.username'),
             $interneContainer->get('database.password'),
             [
-                //config pdo to retrieve result like object
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                 //config pdo to retrieve erreur like exception
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ]

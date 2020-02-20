@@ -8,7 +8,6 @@ use Psr\Http\Message\ServerRequestInterface;
 class HomepageAdminController
 {
     /**
-     *
      * @var RendererInterface
      */
     private $renderer;

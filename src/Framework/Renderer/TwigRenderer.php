@@ -29,7 +29,6 @@ class TwigRenderer implements RendererInterface
 
     /**
      * add path to load view
-     *
      */
     public function addPath(string $namespace, ?string $path = null): void
     {
@@ -38,7 +37,6 @@ class TwigRenderer implements RendererInterface
 
     /**
      * add variable global to all view
-     *
      */
     public function addGlobal(string $key, $value): void
     {

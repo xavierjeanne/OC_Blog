@@ -16,12 +16,6 @@ class App
 
     /**
      *
-     * @var Router
-     */
-    private $router;
-
-    /**
-     *
      * @var container
      */
     private $container;
@@ -35,13 +29,6 @@ class App
         }
     }
 
-    /**
-     * run app and send response
-     *
-     * @param  mixed $request
-     *
-     * @return ResponseInterface
-     */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         //get path uri of request

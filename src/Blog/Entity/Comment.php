@@ -34,17 +34,24 @@ class Comment
     /**
      * @var datetime
      */
-    public $created_at;
+    public $createdAt;
 
     /**
      * @var datetime
      */
-    public $updated_at;
+    public $updatedAt;
 
-    public function __construct()
+    public static function createFromRow(array $row): Comment
     {
-        //format date
-        $this->created_at = new \DateTime($this->created_at);
-        $this->updated_at = new \DateTime($this->updated_at);
+        $comment = new self();
+        $comment->id = $row['id'];
+        $comment->comment = $row['comment'];
+        $comment->userId = $row['user_id'];
+        $comment->postId = $row['post_id'];
+        $comment->status = $row['status'];
+        $comment->createdAt = new \Datetime($row['created_at']);
+        $comment->updatedAt = new \Datetime($row['updated_at']);
+
+        return $comment;
     }
 }

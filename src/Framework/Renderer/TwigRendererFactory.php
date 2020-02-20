@@ -21,6 +21,12 @@ class TwigRendererFactory
         //instantaite twig with loader
         $twig = new \Twig\Environment($loader);
 
+        //if container has twig extensions foreach extension add extension to twigRenderer
+        if ($container->has('twig.extensions')) {
+            foreach ($container->get('twig.extensions') as $extension) {
+                $twig->addExtension($extension);
+            }
+        }
 
         //instantiate tigrenderer
         return new TwigRenderer($twig);

@@ -6,7 +6,6 @@ interface RendererInterface
 {
     /**
      * add path to load view
-     *
      */
     public function addPath(string $namespace, ?string $path = null): void;
 
@@ -22,7 +21,6 @@ interface RendererInterface
 
     /**
      * add variable global to all view
-     *
      */
     public function addGlobal(string $key, $value): void;
 }

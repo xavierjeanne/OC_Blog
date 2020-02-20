@@ -3,13 +3,27 @@
 {% block title "Blog" %}
 
 {% block body %}
-	<h1>Bienvenue sur le blog</h1>
-	<ul>
-		<li>Article 1</li>
-		<li>Article 2</li>
-		<li>Article 3</li>
-		<li>Article 4</li>
-		<li>Article 5</li>
-		<li>Article 6</li>
-	</ul>
+	{% for item in items %}
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-preview">
+					<a href="#">
+						<h2 class="post-title">
+							{{item.title}}
+						</h2>
+						<p><img src="{{item.picture}}" alt="{{item.title}}"></p>
+					</a>
+					<p class="post-meta">Ecrit par
+						{{item.autorUsername}},
+						{{item.createdAt|ago}}</p>
+				</div>
+				<hr>
+			</div>
+		</div>
+	{% endfor %}
+	<div class="row mt-5 justify-content-md-center">
+		<div class="offset-lg-2 col-lg-8 col-md-10">
+			{{paginate(items,'blog.index')}}
+		</div>
+	</div>
 {% endblock body %}

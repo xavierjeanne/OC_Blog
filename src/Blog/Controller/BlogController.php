@@ -6,7 +6,7 @@ use App\Blog\Repository\PostRepository;
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class HomepageController
+class BlogController
 {
     /**
      * @var RendererInterface
@@ -14,7 +14,6 @@ class HomepageController
     private $renderer;
 
     /**
-     *
      * @var PostRepository
      */
     private $postRepository;
@@ -33,6 +32,6 @@ class HomepageController
         $items = $this->postRepository->findPaginated(5, $params['p'] ?? 1);
 
         //return render with the namespace @blog for index with posts
-        return $this->renderer->render('@blog/index', compact('items'));
+        return $this->renderer->render('@blog/blog', compact('items'));
     }
 }
