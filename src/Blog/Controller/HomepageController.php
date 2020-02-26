@@ -2,9 +2,10 @@
 
 namespace App\Blog\Controller;
 
-use App\Framework\Validator;
+use Framework\Validator;
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\EmailSender;
 
 class HomepageController
 {
@@ -28,22 +29,15 @@ class HomepageController
             $validator = $this->getValidator($request);
 
             if ($validator->isValid()) {
-                $mail = "xavier.jeanne@gmail.com";
-                $subject = "Demande de renseignement: " . $params['name'];
-                $headers = 'MIME-Version: 1.0' . "\n";
-                $headers .= 'Reply-To: ' . $params['email'] . "\n";
-                $content = $params['content'];
-                mail($mail, $subject, $content, $headers);
+                $emailSender = new EmailSender($params);
+                $emailSender->send();
                 return $this->renderer->render('@blog/index');
             }
 
             $errors = $validator->getErrors();
             $item = $params;
-            //get params use in form (with errors and item value)
-            $params = $this->formParams(compact('item', 'errors'));
-
             //return render with the namespace and params
-            return $this->renderer->render('@blog/index', $params);
+            return $this->renderer->render('@blog/index', compact('item','errors'));
         }
         return $this->renderer->render('@blog/index');
     }
@@ -55,8 +49,4 @@ class HomepageController
             ->email('email');
     }
 
-    protected function formParams(array $params): array
-    {
-        return $params;
-    }
 }

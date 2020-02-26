@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework;
+namespace Framework;
 
 use Framework\Validator\ValidationError;
 
@@ -23,13 +23,11 @@ class Validator
 
     public function required(string ...$keys): self
     {
-        //for every keys in required
+
         foreach ($keys as $key) {
-            //get the value of key
             $value = $this->getValue($key);
 
-            //if value is null, store error for that key
-            if (is_null($value)) {
+            if ($value===0) {
                 $this->addError($key, 'required');
             }
         }
@@ -44,8 +42,7 @@ class Validator
         //number of charecter
         $length = mb_strlen($value);
 
-        //if min and max exist and length is not valid
-        if (!is_null($min) && !is_null($max) && ($length < $min || $length > $max)) {
+        if ($min!==0 && $max!==0 && ($length < $min || $length > $max)) {
             //add error
             $this->addError($key, 'betweenLength', [$min, $max]);
 
@@ -54,7 +51,7 @@ class Validator
         }
 
         //if min  exist and length is< $min
-        if (!is_null($min) && $length < $min) {
+        if ($min!==0 && $length < $min) {
             //add error
             $this->addError($key, 'minLength', [$min]);
 
@@ -62,7 +59,7 @@ class Validator
             return $this;
         }
         //if max  exist and length is> $max
-        if (!is_null($max) && $length > $max) {
+        if ($max !==0 && $length > $max) {
             //add error
             $this->addError($key, 'maxLength', [$max]);
 
@@ -81,7 +78,7 @@ class Validator
             $value = $this->getValue($key);
 
             //if value is null or empty, store error for that key
-            if (is_null($value) || empty($value)) {
+            if ($value===0 || empty($value)) {
                 $this->addError($key, 'empty');
             }
         }

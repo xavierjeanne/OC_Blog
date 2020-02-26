@@ -7,15 +7,14 @@ use Twig\TwigFunction;
 
 class FormExtension extends AbstractExtension
 {
-
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('field', [$this, 'field'], ['is_safe' => ['html'], 'needs_context' => true])
         ];
     }
 
-    public function field($context, string $key, $value, ?string $label = null, array $options = [])
+    public function field($context, string $key, $value, ?string $label = null, array $options = []): string
     {
         //get type if exist, else type=text
         $type = $options['type'] ?? 'text';
@@ -65,13 +64,15 @@ class FormExtension extends AbstractExtension
                 </div>";
     }
 
-    private function getErrorHtml($context, $key)
+    private function getErrorHtml($context, $key):string
     {
         //get context and error
         $error = $context['errors'][$key] ?? false;
+
         if ($error) {
             return  "<small class=\"invalid-feedback\">$error</small>";
         }
+
         return "";
     }
 
@@ -80,13 +81,14 @@ class FormExtension extends AbstractExtension
         return "<textarea " . $this->getHtmlFromArray($attributes) . " >$value</textarea>";
     }
 
-    private function select(?string $value, array $options, array $attributes)
+    private function select(?string $value, array $options, array $attributes):string
     {
         //generate htmloption with list options
         $htmlOptions = array_reduce(array_keys($options), function (string $html, string $key) use ($options, $value) {
             $params = ['value' => $key, 'selected' => $key === $value];
             return $html . '<option ' . $this->getHtmlFromArray($params) . '>' . $options[$key] . '</option>';
         }, "");
+
         return "<select " . $this->getHtmlFromArray($attributes) . ">$htmlOptions</select>";
     }
 
@@ -95,9 +97,10 @@ class FormExtension extends AbstractExtension
         return "<input type=\"text\"  " . $this->getHtmlFromArray($attributes) . " value=\"$value\"/>";
     }
 
-    private function getHtmlFromArray(array $attributes)
+    private function getHtmlFromArray(array $attributes):string
     {
         $htmlParts = [];
+
         foreach ($attributes as $key => $value) {
             //if value is a boolean,return just key(use for selected options)
             if ($value === true) {
@@ -106,6 +109,7 @@ class FormExtension extends AbstractExtension
                 $htmlParts[] = "$key=\"$value\"";
             }
         }
+
         return implode(' ', $htmlParts);
     }
 
@@ -115,6 +119,7 @@ class FormExtension extends AbstractExtension
         if ($value instanceof \DateTime) {
             return $value->format('Y-m-d H:i:s');
         }
+        
         return (string) $value;
     }
 }
