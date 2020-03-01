@@ -15,7 +15,6 @@ class App
     private $modules = [];
 
     /**
-     *
      * @var container
      */
     private $container;

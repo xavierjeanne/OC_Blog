@@ -1,0 +1,30 @@
+{% extends "layout-front.html.twig" %}
+
+{% block title "Blog" %}
+
+{% block body %}
+	{% for item in items %}
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="post-preview">
+					<a href="{{path('blog.show',{id:item.id})}}">
+						<h2 class="post-title">
+							{{item.title}}
+						</h2>
+						<p><img src="{{item.picture}}" alt="{{item.title}}"></p>
+					</a>
+					<p>{{item.abstract}}</p>
+					<p class="post-meta">Ecrit par
+						{{item.login}},
+						{{item.createdAt|ago}}</p>
+				</div>
+				<hr>
+			</div>
+		</div>
+	{% endfor %}
+	<div class="row mt-5 justify-content-md-center">
+		<div class="offset-lg-2 col-lg-8 col-md-10">
+			{{paginate(items,'blog.blog')}}
+		</div>
+	</div>
+{% endblock body %}

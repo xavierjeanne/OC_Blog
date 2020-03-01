@@ -2,9 +2,10 @@
 
 namespace App\Blog\Controller;
 
-use App\Blog\Repository\PostRepository;
+use Framework\Validator;
 use Framework\Renderer\RendererInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Framework\EmailSender;
 
 class HomepageController
 {
@@ -14,24 +15,46 @@ class HomepageController
     private $renderer;
 
     /**
-     * @var PostRepository
+     * @var EmailSender
      */
-    private $postRepository;
+    private $emailSender;
 
-    public function __construct(RendererInterface $renderer, PostRepository $postRepository)
+
+    public function __construct(RendererInterface $renderer, EmailSender $emailSender)
     {
         $this->renderer = $renderer;
-        $this->postRepository = $postRepository;
+        $this->emailSender = $emailSender;
     }
 
     public function __invoke(ServerRequestInterface $request): string
     {
-        //get params of pagination if exist
-        $params = $request->getQueryParams();
-        //get posts ,use method find paginated published (only post published)
-        $items = $this->postRepository->findPaginated(5, $params['p'] ?? 1);
+        if ($request->getMethod() === 'POST') {
+            //get params form request
+            $params = $request->getParsedBody();
+            //check validation error
+            $validator = $this->getValidator($request);
 
-        //return render with the namespace @blog for index with posts
-        return $this->renderer->render('@blog/index', compact('items'));
+            if ($validator->isValid()) {
+                $subject = "Demande de renseignement : " .$params['name'];
+                $content = $params['content'];
+                $headers = "Reply To: ".$params['email'];
+                $this->emailSender->send($subject, $content, $headers);
+                
+                return $this->renderer->render('@blog/index');
+            }
+
+            $errors = $validator->getErrors();
+            $item = $params;
+            //return render with the namespace and params
+            return $this->renderer->render('@blog/index', compact('item', 'errors'));
+        }
+        return $this->renderer->render('@blog/index');
+    }
+
+    protected function getValidator(ServerRequestInterface $request)
+    {
+        return (new Validator($request->getParsedBody()))
+            ->notEmpty('name', 'email', 'content')
+            ->email('email');
     }
 }

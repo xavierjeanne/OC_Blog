@@ -1,23 +1,23 @@
 {% extends "layout-front.html.twig" %}
 
-{% block title "Blog" %}
-
 {% block body %}
-	{% for item in items %}
-		<div class="row">
-			<div class="col-lg-8 col-md-10 mx-auto">
-				<div class="post-preview">
-					<a href="{{path('blog.show',{id:item.id})}}">
-						<h2 class="post-title">
-							{{item.title}}</h2>
-						<p><img src="{{item.picture}}" alt="{{item.title}}"></p>
-					</a>
-					<p>{{item.abstract}}</p>
-					<p class="post-meta">Ecrit par{{item.autorUsername}},{{item.createdAt|ago}}</p>
-				</div><hr></div>
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<p>Passionné par le développement web depuis plusieurs années, j'ai effectué en 2018 une reconversion adulte à l'IFPA de Mérignac et je continue à me former et  acquérir de nouvelles compétences en suivant le parcours Openclassroom "Développeur d'application Symfony".</p>
 		</div>
-	{% endfor %}
-	<div class="row mt-5 justify-content-md-center">
-		<div class="offset-lg-2 col-lg-8 col-md-10">{{paginate(items,'blog.index')}}</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<p>Vous voulez prendre contact avec moi, remplissez les champs suivants et je vous recontacterais dés que possible !</p>
+			<form action="" method="post" class="needs-validation" novalidate>
+				{{field('name',item.name,"Nom",{required:'required'})}}
+				{{field('email',item.email,"Email",{required:'required',type:'email',pattern:"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"})}}
+				{{field('content',item.content,"Message",{required:'required',type:'textarea'})}}
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Envoyer</button>
+				</div>
+			</form>
+		</div>
 	</div>
 {% endblock body %}

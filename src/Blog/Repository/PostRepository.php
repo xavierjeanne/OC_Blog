@@ -3,16 +3,17 @@
 namespace App\Blog\Repository;
 
 use App\Blog\Entity\Post;
-use App\Blog\Model\ShortPost;
 use App\Blog\Model\ShowPost;
+use App\Blog\Model\ShortPost;
 use Framework\Repository\Repository;
+use App\Blog\Repository\UserRepository;
 
 class PostRepository extends Repository
 {
     /**
-     * @var ShortPost
+     * @var Post
      */
-    protected $model = ShortPost::class;
+    protected $entity = Post::class;
 
     /**
      * @var string
@@ -20,9 +21,25 @@ class PostRepository extends Repository
     protected $table = 'posts';
 
     /**
-     * @var Post
+     *
+     * @var ShortPost
      */
-    protected $entity = Post::class;
+    protected $model = ShortPost::class;
+
+    protected function countQuery(): string
+    {
+        return "SELECT COUNT(id) FROM  $this->table WHERE status ='published'";
+    }
+
+    protected function paginationQuery(): string
+    {
+        return "SELECT p.id as postId,p.picture,p.created_at,p.abstract,p.title,u.login 
+        FROM  $this->table as p 
+        INNER JOIN users as u 
+        ON p.user_id = u.id 
+        WHERE p.status ='published' 
+        ORDER BY p.created_at DESC";
+    }
 
     public function find(int $id)
     {
@@ -42,20 +59,5 @@ class PostRepository extends Repository
         }
 
         return $result;
-    }
-
-    protected function countQuery(): string
-    {
-        return "SELECT COUNT(id) FROM  $this->table WHERE status ='published'";
-    }
-
-    protected function paginationQuery(): string
-    {
-        return "SELECT p.id as postId,p.picture,p.created_at,p.abstract,p.title,u.login 
-            FROM  $this->table as p 
-            INNER JOIN users as u 
-            ON p.user_id = u.id 
-            WHERE p.status ='published' 
-            ORDER BY p.created_at DESC";
     }
 }

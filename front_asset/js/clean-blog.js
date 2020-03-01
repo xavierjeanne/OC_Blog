@@ -1,14 +1,20 @@
 (function ($) {
     "use strict"; // Start of use strict
 
-    // Floating label headings for the contact form
-    $("body").on("input propertychange", ".floating-label-form-group", function (e) {
-        $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
-    }).on("focus", ".floating-label-form-group", function () {
-        $(this).addClass("floating-label-form-group-with-focus");
-    }).on("blur", ".floating-label-form-group", function () {
-        $(this).removeClass("floating-label-form-group-with-focus");
-    });
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('keyup', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
 
     // Show the navbar when the page is scrolled up
     var MQL = 992;
