@@ -130,7 +130,7 @@ class Validator
         $this->errors[$key] = new ValidationError($key, $rule, $attributes);
     }
 
-    private function getValue(string $key)
+    private function getValue(string $key): ?array
     {
 
         if (array_key_exists($key, $this->params)) {

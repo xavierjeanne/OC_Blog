@@ -4,35 +4,19 @@ namespace Framework;
 
 class EmailSender
 {
-    /** 
-     * @var string
-     */
-    private $mail="xavier.jeanne@gmail.com";
-
     /**
      * @var string
      */
-    private $subject;
+    private $mail;
 
-    /**
-     * @var string
-     */
-    private $headers;
 
-    /**
-     * @var string
-     */
-    private $content;
-
-    public function __construct(array $params)
+    public function __construct()
     {
-        $this->subject = "Demande de renseignement : " .$params['name'];
-        $this->headers = "Reply To: ".$params['email'];
-        $this->content = $params['content'];
+        $this->mail = "xavier.jeanne@gmail.com";
     }
 
-    public function send()
+    public function send(string $subject, string $content, string $headers)
     {
-        mail($this->mail,$this->subject,$this->headers);
+        mail($this->mail, $subject, $content, $headers);
     }
 }
